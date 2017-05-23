@@ -27,13 +27,19 @@
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function logout() {
+    FB.logout(function(response) {
+   // Person is now logged out
+  });
+  }
 </script>
 
 Hello World
 
-<fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
+<fb:login-button autologoutlink="true" scope="public_profile,email,user_likes,user_religion_politics,rsvp_event" onlogin="checkLoginState();" onlogout="logout();">
 </fb:login-button>
 
 </body>
